@@ -22,5 +22,5 @@ class FirestoreService {
       throw e;
     }
   }
-  
+
 }

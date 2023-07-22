@@ -4,13 +4,11 @@ class CustomField extends StatefulWidget {
   final String hint;
   final String label;
   final TextEditingController controller;
-  final void Function(Color) updateThemeColor;
-
   CustomField({
     Key? key,
     required this.hint,
     required this.label,
-    required this.controller, required this.updateThemeColor,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -42,12 +40,6 @@ class _CustomFieldState extends State<CustomField> {
         width: MediaQuery.of(context).size.width*0.7,
         child: TextField(
           controller: widget.controller,
-          onChanged: (text) {
-            setState(() {
-              fillColor = selectColor(text);
-              widget.updateThemeColor(fillColor);
-            });
-          },
           decoration: InputDecoration(
             contentPadding:
             EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),

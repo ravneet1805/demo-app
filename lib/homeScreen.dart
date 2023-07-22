@@ -1,3 +1,4 @@
+import 'package:demoproject/utils/constants.dart';
 import 'package:demoproject/widget/customTextfield.dart';
 import 'package:flutter/material.dart';
 
@@ -16,12 +17,20 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController countryController = TextEditingController();
   Color appThemeColor = Colors.brown;
+  @override
+  void initState() {
+    super.initState();
+    _initializePrimaryColor();
+  }
 
-  void updateThemeColor(Color color) {
+  void _initializePrimaryColor() async {
+    Color color = await Constants.getcolorLocation();
     setState(() {
       appThemeColor = color;
     });
   }
+
+
 
   @override
   void dispose() {
@@ -109,25 +118,21 @@ class _HomeScreenState extends State<HomeScreen> {
               hint: 'enter your name',
               label: 'name',
               controller: nameController,
-              updateThemeColor: updateThemeColor,
             ),
             CustomField(
               hint: 'enter your mobile number',
               label: 'mobile',
               controller: mobileController,
-              updateThemeColor: updateThemeColor,
             ),
             CustomField(
               hint: 'example@gmail.com',
               label: 'email',
               controller: emailController,
-              updateThemeColor: updateThemeColor,
             ),
             CustomField(
               hint: 'country name',
               label: 'country',
               controller: countryController,
-              updateThemeColor: updateThemeColor,
             ),
             ElevatedButton(
               onPressed: _sendData,
